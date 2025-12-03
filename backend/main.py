@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from .database import engine, Base
-from .routers import driver_router
+from .routers import driver_router, truck_router
 
 app = FastAPI()
 
@@ -9,6 +9,7 @@ Base.metadata.create_all(bind=engine)
 
 # Include routers
 app.include_router(driver_router.router)
+app.include_router(truck_router.router)
 
 @app.get("/")
 def root():
